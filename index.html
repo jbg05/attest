@@ -1,104 +1,396 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Attest | Fund administration for emerging managers</title>
-<meta name="description" content="Attest handles NAV, investor statements, reconciliation and the audit trail for hedge, quant and crypto funds under $500M.">
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>document.documentElement.classList.add("js")</script>
+<title>Attest | Fund administration that shows its work</title>
+<meta name="description" content="Attest strikes NAV, reconciles to the custodian and issues investor statements for emerging hedge, quant and digital asset funds. Every figure traces back to the file it came from.">
+<meta property="og:title" content="Attest | Fund administration that shows its work">
+<meta property="og:description" content="NAV, reconciliation and investor statements for emerging funds. Every figure traces back to the file it came from.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://attest.fund/">
+<meta property="og:image" content="https://attest.fund/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://attest.fund/">
+<meta name="theme-color" content="#F5F2EA">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231D3A31'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-family='Georgia,serif' font-size='38' fill='%23F5F2EA'%3EA%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root{--ink:#111a2e;--body:#33405a;--muted:#68758f;--faint:#9aa4b8;--rule:#e7eaf2;--bg:#ffffff;--soft:#f6f8fc;--accent:#2b4c8c;--accent-ink:#1f3a6e;--accent-bg:#eaf0fa}
-  *{box-sizing:border-box}html{scroll-behavior:smooth}
-  body{margin:0;color:var(--body);background:var(--bg);font:16px/1.6 -apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
-  h1,h2,h3{margin:0;color:var(--ink);line-height:1.15;letter-spacing:-.02em;text-wrap:balance}
-  p{margin:0 0 1em}a{color:var(--accent-ink);text-decoration:none}a:hover{text-decoration:underline}
-  a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
-  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
-  .eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
-  nav{border-bottom:1px solid var(--rule);position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);z-index:5}
-  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:62px}
-  .brand{font-weight:800;color:var(--ink);font-size:19px;letter-spacing:-.02em;display:flex;align-items:center;gap:9px}
-  .brand:hover{text-decoration:none}
-  .brand .mk{width:22px;height:22px;border-radius:5px;background:var(--accent);display:inline-block;position:relative}
-  .brand .mk:after{content:"";position:absolute;left:5px;right:5px;top:6px;height:2px;background:#fff;box-shadow:0 4px 0 #fff,0 8px 0 #fff}
-  .navlinks{display:flex;gap:26px;align-items:center;font-size:14.5px;font-weight:500}
-  .navlinks a{color:var(--body)}
-  .navlinks a.cta{background:var(--accent);color:#fff;padding:9px 16px;border-radius:8px;font-weight:600}
-  .navlinks a.cta:hover{text-decoration:none;background:var(--accent-ink)}
-  .hero{padding:76px 0 60px;border-bottom:1px solid var(--rule);background:linear-gradient(180deg,var(--soft),#fff)}
-  .hero h1{font-size:46px;font-weight:800;max-width:17ch}
-  .hero .sub{font-size:20px;color:var(--muted);max-width:56ch;margin:20px 0 30px}
-  .btnrow{display:flex;gap:12px;flex-wrap:wrap}
-  .btn{padding:13px 22px;border-radius:9px;font-weight:600;font-size:15.5px;display:inline-block}
-  .btn:hover{text-decoration:none}
-  .btn.primary{background:var(--accent);color:#fff}.btn.primary:hover{background:var(--accent-ink)}
-  .btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--rule)}.btn.ghost:hover{border-color:var(--faint)}
-  .heronote{margin-top:18px;font-size:13.5px;color:var(--faint);max-width:60ch}
-  section{padding:64px 0;border-bottom:1px solid var(--rule)}
-  h2.sec{font-size:32px;font-weight:800}
-  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:38px}
-  .step .n{width:34px;height:34px;border-radius:9px;background:var(--accent-bg);color:var(--accent-ink);font-weight:800;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
-  .step h3{font-size:18px;margin-bottom:6px}.step p{font-size:15px;color:var(--muted);margin:0}
-  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:34px}
-  .card{border:1px solid var(--rule);border-radius:12px;padding:24px;background:#fff}
-  .card h3{font-size:17px;margin-bottom:6px}.card p{font-size:14.5px;color:var(--muted);margin:0}
-  .kicker{display:inline-block;font-size:13px;color:var(--accent-ink);background:var(--accent-bg);padding:5px 12px;border-radius:20px;font-weight:600;margin-bottom:18px}
-  .secgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:34px}
-  .seccard{border:1px solid var(--rule);border-radius:12px;padding:22px;background:var(--soft)}
-  .seccard h3{font-size:16px;margin-bottom:6px}.seccard p{font-size:14.5px;color:var(--muted);margin:0}
-  .pill{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:3px 9px;border-radius:20px;background:#fbf1de;color:#8a6413;margin-left:8px;vertical-align:middle}
-  footer{padding:44px 0;color:var(--faint);font-size:13.5px}
-  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
-  footer a{color:var(--muted)}
-  @media(max-width:820px){.steps,.grid,.secgrid{grid-template-columns:1fr}.hero h1{font-size:34px}.navlinks a:not(.cta){display:none}}
-</style></head><body id="top">
+  :root{
+    --paper:#F5F2EA; --paper-2:#EEE9DD; --sheet:#FFFDF8;
+    --ink:#15201C; --ink-2:#34403A; --muted:#6B736C; --faint:#9A9F97;
+    --rule:#DAD3C4; --rule-2:#C9C0AD;
+    --green:#1D3A31; --green-2:#264A3F; --brass:#9A7B45; --brass-2:#B8975C;
+    --serif:"Newsreader",Georgia,"Times New Roman",serif;
+    --sans:"Instrument Sans",-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--paper);color:var(--ink-2);font:16px/1.65 var(--sans);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  a{color:inherit}
+  a:focus-visible,button:focus-visible{outline:2px solid var(--brass);outline-offset:3px;border-radius:2px}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 32px}
+  .sc{font:600 11.5px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--brass)}
+  h1,h2,h3{font-family:var(--serif);color:var(--ink);font-weight:400;margin:0;letter-spacing:-.01em}
+  p{margin:0}
+  .num{font-variant-numeric:tabular-nums lining-nums}
 
-<nav><div class="wrap">
-  <a class="brand" href="#top"><span class="mk"></span>Attest</a>
-  <div class="navlinks"><a href="#how">How it works</a><a href="#deliver">What you get</a><a href="#trust">Trust</a><a href="mailto:hello@attest.fund?subject=Shadow%20NAV" class="cta">Request a shadow NAV</a></div>
-</div></nav>
+  /* header */
+  header{position:sticky;top:0;z-index:10;background:rgba(245,242,234,.9);backdrop-filter:saturate(140%) blur(10px);-webkit-backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid transparent;transition:border-color .2s}
+  header.scrolled{border-bottom-color:var(--rule)}
+  .bar{display:flex;align-items:center;justify-content:space-between;height:76px}
+  .mark{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
+  .mark svg{display:block}
+  .mark span{font:400 27px/1 var(--serif);letter-spacing:-.01em}
+  nav.links{display:flex;align-items:center;gap:34px;font-size:14.5px}
+  nav.links a{text-decoration:none;color:var(--ink-2)}
+  nav.links a:hover{color:var(--ink)}
+  .btn{display:inline-flex;align-items:center;gap:10px;font:500 14.5px/1 var(--sans);text-decoration:none;padding:14px 22px;border-radius:2px;transition:background .15s,color .15s,border-color .15s}
+  .btn-solid{background:var(--green);color:#F5F2EA}
+  .btn-solid:hover{background:var(--green-2)}
+  .btn-line{border:1px solid var(--rule-2);color:var(--ink)}
+  .btn-line:hover{border-color:var(--ink)}
+  .btn .arr{transition:transform .15s}
+  .btn:hover .arr{transform:translateX(3px)}
+  nav.links .btn{padding:11px 18px;color:#F5F2EA}
 
-<header class="hero"><div class="wrap">
-  <div class="eyebrow">Fund administration for emerging managers</div>
-  <h1>Fund admin for the funds the big administrators don't have time for.</h1>
-  <p class="sub">Attest handles NAV, investor statements, reconciliation and the audit trail for hedge, quant and crypto funds under $500M. Most of the work is done by software, so the price makes sense for a fund that's just starting out.</p>
-  <div class="btnrow">
-    <a href="mailto:hello@attest.fund?subject=Shadow%20NAV" class="btn primary">Request a free shadow NAV</a>
-    <a href="#how" class="btn ghost">How it works</a>
+  /* hero */
+  .hero{padding:88px 0 96px;border-bottom:1px solid var(--rule)}
+  .hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:72px;align-items:center}
+  .hero h1{text-wrap:balance;font-size:clamp(44px,5.6vw,74px);line-height:1.02;letter-spacing:-.025em;margin:22px 0 28px}
+  .hero h1 em{font-style:italic;color:var(--green)}
+  .lede{font:400 21px/1.55 var(--serif);color:var(--ink-2);max-width:34em}
+  .hero .actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:38px}
+  .hero .fine{margin-top:26px;font-size:14px;color:var(--muted)}
+
+  /* document */
+  .doc-stack{position:relative;padding:18px 0 18px 18px}
+  .doc-stack:before{content:"";position:absolute;inset:0 18px 36px 0;background:var(--paper-2);border:1px solid var(--rule);transform:rotate(-1.6deg);transform-origin:bottom left}
+  .doc{position:relative;background:var(--sheet);border:1px solid var(--rule);box-shadow:0 1px 0 rgba(0,0,0,.02),0 18px 40px -18px rgba(40,34,20,.25),0 40px 80px -40px rgba(40,34,20,.18);padding:34px 36px 30px}
+  .doc:before{content:"";position:absolute;left:36px;right:36px;top:0;height:3px;background:var(--brass)}
+  .doc .tag{position:absolute;top:18px;right:20px;font:500 10.5px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--faint);border:1px solid var(--rule);padding:6px 8px}
+  .doc .fund{font:400 21px/1.25 var(--serif);color:var(--ink);margin:14px 0 4px;max-width:14em}
+  .doc .meta{font-size:13px;color:var(--muted)}
+  .doc table{width:100%;border-collapse:collapse;margin-top:24px;font-size:14px}
+  .doc td{padding:11px 0;border-bottom:1px solid #ECE6D8;color:var(--ink-2)}
+  .doc td.v{text-align:right;font-family:var(--serif);font-size:16px;color:var(--ink);font-variant-numeric:tabular-nums lining-nums}
+  .doc tr.total td{border-bottom:3px double var(--ink-2);color:var(--ink);font-weight:600}
+  .doc tr.total td.v{font-weight:500}
+  .doc tr.plain td{border-bottom:0;padding-top:14px;color:var(--muted)}
+  .doc .src{margin-top:22px;padding-top:16px;border-top:1px solid #ECE6D8}
+  .doc .src .sc{font-size:10px;color:var(--muted)}
+  .doc .src ul{list-style:none;margin:10px 0 0;padding:0;font:12.5px/1.9 ui-monospace,"SF Mono",Menlo,monospace;color:var(--ink-2)}
+  .doc .src li{display:flex;justify-content:space-between;gap:16px}
+  .doc .src li span:last-child{color:var(--brass)}
+
+  /* principles */
+  .principles{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--rule)}
+  .principles > div{padding:44px 40px 48px;border-left:1px solid var(--rule)}
+  .principles > div:first-child{border-left:0;padding-left:0}
+  .principles h3{font-size:25px;margin:16px 0 10px}
+  .principles p{color:var(--muted);font-size:15.5px}
+
+  /* sections */
+  section{padding:120px 0}
+  .head{display:grid;grid-template-columns:1fr 1.35fr;gap:72px;align-items:end;margin-bottom:64px}
+  .head h2{font-size:clamp(34px,3.8vw,50px);line-height:1.08;letter-spacing:-.02em;margin-top:18px}
+  .head p{font:400 19px/1.6 var(--serif);color:var(--ink-2);max-width:32em}
+
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--ink)}
+  .step{padding:34px 36px 8px 0}
+  .step + .step{padding-left:36px;border-left:1px solid var(--rule)}
+  .step .rn{font:italic 400 46px/1 var(--serif);color:var(--brass)}
+  .step h3{font-size:25px;margin:22px 0 12px}
+  .step p{font-size:15.5px;color:var(--muted)}
+
+  /* deliverables */
+  .deliv{background:var(--sheet);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+  .dl{display:grid;grid-template-columns:1fr 1.35fr;gap:72px}
+  .dl .stick{position:sticky;top:120px;align-self:start}
+  .dl .stick h2{font-size:clamp(34px,3.8vw,50px);line-height:1.08;letter-spacing:-.02em;margin:18px 0 22px}
+  .dl .stick p{font:400 19px/1.6 var(--serif);color:var(--ink-2)}
+  .items{list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)}
+  .items li{display:grid;grid-template-columns:64px 1fr;gap:8px;padding:30px 0 32px;border-bottom:1px solid var(--rule)}
+  .items .rn{font:italic 400 20px/1.3 var(--serif);color:var(--brass);padding-top:3px}
+  .items h3{font-size:24px;margin-bottom:8px}
+  .items p{color:var(--muted);font-size:15.5px;max-width:36em}
+
+  /* instruments */
+  .ledger{width:100%;border-collapse:collapse;border-top:1px solid var(--ink)}
+  .ledger th{font:600 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-align:left;padding:18px 24px 18px 0;border-bottom:1px solid var(--rule-2)}
+  .ledger td{padding:28px 24px 28px 0;border-bottom:1px solid var(--rule);vertical-align:top;font-size:15.5px;color:var(--ink-2)}
+  .ledger td:first-child{font:400 23px/1.25 var(--serif);color:var(--ink);width:26%}
+  .ledger td:nth-child(2){color:var(--muted);width:24%}
+  .ledger .flag{display:inline-block;margin-top:10px;font:600 10.5px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--brass);border:1px solid #E3D5B8;background:#FBF6EA;padding:5px 7px}
+  .note{margin-top:28px;font-size:14.5px;color:var(--muted);max-width:52em}
+
+  /* controls (dark) */
+  .controls{background:var(--green);color:#DCE3DD}
+  .controls .sc{color:var(--brass-2)}
+  .controls h2{color:#F5F2EA}
+  .controls .head p{color:#C3CEC6}
+  .cgrid{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid rgba(245,242,234,.35)}
+  .cgrid > div{padding:40px 48px 44px 0;border-bottom:1px solid rgba(245,242,234,.14)}
+  .cgrid > div:nth-child(even){padding-left:48px;padding-right:0;border-left:1px solid rgba(245,242,234,.14)}
+  .cgrid h3{color:#F5F2EA;font-size:27px;margin-bottom:12px}
+  .cgrid p{color:#BCC8C0;font-size:15.5px;max-width:30em}
+
+  /* standing */
+  .standing{display:grid;grid-template-columns:1fr 1.35fr;gap:72px;align-items:start}
+  .standing h2{font-size:clamp(34px,3.8vw,50px);line-height:1.08;letter-spacing:-.02em;margin-top:18px}
+  .standing .body p{font:400 21px/1.6 var(--serif);color:var(--ink)}
+  .standing .body p + p{margin-top:22px}
+  .facts{display:grid;grid-template-columns:repeat(3,1fr);margin-top:44px;border-top:1px solid var(--rule)}
+  .facts div{padding:22px 20px 0 0}
+  .facts div + div{padding-left:20px;border-left:1px solid var(--rule)}
+  .facts dt{font:600 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .facts dd{margin:10px 0 0;font:400 19px/1.35 var(--serif);color:var(--ink)}
+
+  /* close */
+  .close{border-top:1px solid var(--rule);text-align:center;padding:128px 0 132px}
+  .close h2{font-size:clamp(38px,4.6vw,62px);line-height:1.05;letter-spacing:-.025em;margin:22px auto 22px;max-width:14em}
+  .close p{font:400 20px/1.6 var(--serif);color:var(--ink-2);max-width:31em;margin:0 auto 40px}
+  .close .mail{display:block;margin-top:22px;font-size:14.5px;color:var(--muted)}
+  .close .mail a{color:var(--ink);text-decoration-color:var(--rule-2);text-underline-offset:4px}
+
+  footer{background:var(--paper-2);border-top:1px solid var(--rule);padding:48px 0 44px;font-size:14px;color:var(--muted)}
+  .frow{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+  .frow .mark span{font-size:22px}
+  .frow a{color:var(--ink-2);text-decoration:none}
+  .frow a:hover{color:var(--ink)}
+  .legal{margin-top:28px;padding-top:22px;border-top:1px solid var(--rule)}
+  .legal p{font-size:12.5px;line-height:1.6;color:var(--faint);max-width:62em}
+
+  /* reveal */
+  .js .rv{opacity:0;transform:translateY(14px);transition:opacity .8s ease,transform .8s ease}
+  .js .rv.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+  @media (max-width:980px){
+    .hero-grid,.head,.dl,.standing{grid-template-columns:1fr;gap:44px}
+    .dl .stick{position:static}
+    .hero{padding:56px 0 72px}
+    section{padding:84px 0}
+    .principles{grid-template-columns:1fr}
+    .principles > div,.principles > div:first-child{padding:32px 0;border-left:0;border-top:1px solid var(--rule)}
+    .principles > div:first-child{border-top:0}
+    .steps{grid-template-columns:1fr}
+    .step,.step + .step{padding:30px 0;border-left:0}
+    .step + .step{border-top:1px solid var(--rule)}
+    .cgrid{grid-template-columns:1fr}
+    .cgrid > div,.cgrid > div:nth-child(even){padding:32px 0;border-left:0}
+    nav.links a:not(.btn){display:none}
+  }
+  .hero-grid > *{min-width:0}
+  .doc .src li span:first-child{min-width:0}
+  @media (max-width:640px){
+    .wrap{padding:0 20px}
+    .hero h1{font-size:40px;line-height:1.05}
+    .doc .tag{position:static;display:inline-block;margin:6px 0 16px}
+    .doc td{font-size:13.5px}
+    .doc td.v{font-size:15px}
+    .doc .src ul{font-size:11.5px}
+    .bar{height:64px}
+    .mark span{font-size:24px}
+    nav.links .btn{padding:10px 14px;font-size:13.5px}
+    .lede{font-size:19px}
+    .doc{padding:30px 22px 24px}
+    .doc:before{left:22px;right:22px}
+    .doc-stack{padding:12px 0 12px 10px}
+    .doc .src li span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .ledger thead{display:none}
+    .ledger,.ledger tbody,.ledger tr,.ledger td{display:block;width:100%!important}
+    .ledger tr{padding:24px 0;border-bottom:1px solid var(--rule)}
+    .ledger td{padding:0 0 8px;border:0}
+    .facts{grid-template-columns:1fr}
+    .facts div,.facts div + div{padding:18px 0 0;border-left:0}
+    .close{padding:88px 0}
+  }
+</style>
+</head>
+<body>
+
+<header id="top">
+  <div class="wrap bar">
+    <a class="mark" href="#top" aria-label="Attest home">
+      <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><circle cx="15" cy="15" r="14" fill="none" stroke="#1D3A31" stroke-width="1.2"/><circle cx="15" cy="15" r="11" fill="none" stroke="#9A7B45" stroke-width=".8"/><path d="M9.6 20.4 15 8.6l5.4 11.8M11.7 16.2h6.6" fill="none" stroke="#1D3A31" stroke-width="1.3" stroke-linejoin="round"/></svg>
+      <span>Attest</span>
+    </a>
+    <nav class="links">
+      <a href="#approach">Approach</a>
+      <a href="#deliverables">Deliverables</a>
+      <a href="#instruments">Instruments</a>
+      <a href="#controls">Controls</a>
+      <a class="btn btn-solid" href="mailto:hello@attest.fund?subject=Shadow%20run">Arrange a shadow run</a>
+    </nav>
   </div>
-  <p class="heronote">We start by running next to your current setup. You don't switch anything until our numbers match yours.</p>
-</div></header>
+</header>
 
-<section id="how"><div class="wrap">
-  <div class="eyebrow">How it works</div>
-  <h2 class="sec">We earn the book before we keep it.</h2>
-  <div class="steps">
-    <div class="step"><div class="n">1</div><h3>Shadow mode</h3><p>Send us the same files you already send your administrator. We produce your NAV and every investor statement in parallel. Nothing changes on your side.</p></div>
-    <div class="step"><div class="n">2</div><h3>Compare</h3><p>Every position is reconciled to your custodian and every fee is calculated against each investor's own high-water mark. You can trace any number back to a source file.</p></div>
-    <div class="step"><div class="n">3</div><h3>Switch when you're ready</h3><p>After a few cycles of matching numbers, we can take over as your administrator for a fraction of what the large firms charge.</p></div>
+<main>
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="sc">Fund administration for emerging managers</div>
+      <h1>Fund administration that <em>shows its work.</em></h1>
+      <p class="lede">Attest strikes NAV, reconciles to your custodian and issues investor statements for hedge, quant and digital asset funds. Every figure traces back to the file it came from, and any NAV we issue can be run again on request.</p>
+      <div class="actions">
+        <a class="btn btn-solid" href="mailto:hello@attest.fund?subject=Shadow%20run">Arrange a shadow run <span class="arr">&rarr;</span></a>
+        <a class="btn btn-line" href="#deliverables">What you receive</a>
+      </div>
+      <p class="fine">The first period runs alongside your current process, at no cost.</p>
+    </div>
+
+    <div class="doc-stack" aria-label="Sample capital statement">
+      <div class="doc">
+        <div class="tag">Sample &middot; fictional fund</div>
+        <div class="sc">Capital statement</div>
+        <div class="fund">Northfield Digital Opportunities Fund LP</div>
+        <div class="meta">Period ended 30 June 2026 &middot; Investor NF-002</div>
+        <table class="num">
+          <tr><td>Opening capital</td><td class="v">3,505,611.55</td></tr>
+          <tr><td>Share of period P&amp;L</td><td class="v">12,045.40</td></tr>
+          <tr><td>Incentive fee, own high-water mark</td><td class="v">(2,409.08)</td></tr>
+          <tr class="total"><td>Closing capital</td><td class="v">3,515,247.87</td></tr>
+          <tr class="plain"><td>Ownership of fund</td><td class="v">43.73%</td></tr>
+        </table>
+        <div class="src">
+          <div class="sc">Source files &middot; SHA-256</div>
+          <ul>
+            <li><span>blotter-q2-2026.csv</span><span>09306fdde65d</span></li>
+            <li><span>custodian-statement-q2-2026.csv</span><span>8ce5a2ed8667</span></li>
+            <li><span>prices-q2-2026.csv</span><span>e50d50dfb364</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
-</div></section>
+</section>
 
-<section id="deliver"><div class="wrap">
-  <div class="eyebrow">What you get</div>
-  <h2 class="sec">The documents your LPs and auditors ask for.</h2>
-  <div class="grid">
-    <div class="card"><h3>NAV pack</h3><p>Reconciliation with every break called out, positions and marks with their sources, the NAV waterfall, and a fingerprint of every input file.</p></div>
-    <div class="card"><h3>Capital statements</h3><p>One per investor: opening capital, share of P&amp;L, incentive fee against their own high-water mark, closing capital, redemptions and holdbacks.</p></div>
-    <div class="card"><h3>Newer instruments</h3><p>Event contracts on Kalshi and Polymarket, tokenized treasuries and on-chain positions. Most legacy administrators can't reconcile these yet.</p></div>
-    <div class="card"><h3>Re-performable</h3><p>Any NAV we issue can be re-run from the exact files behind it. If a number ever changes, you'll know what changed and why.</p></div>
+<div class="wrap">
+  <div class="principles">
+    <div class="rv"><div class="sc">Shadow first</div><h3>Proven before relied on</h3><p>We run in parallel with your current administrator or spreadsheet until our numbers match yours.</p></div>
+    <div class="rv"><div class="sc">Traceable</div><h3>Every figure has a source</h3><p>Each input file is fingerprinted, and each number in the pack points back to one of them.</p></div>
+    <div class="rv"><div class="sc">Re-performable</div><h3>Run again on request</h3><p>Any NAV we issue can be re-run from the recorded files, and we tell you if anything moved.</p></div>
   </div>
-</div></section>
+</div>
 
-<section id="trust"><div class="wrap">
-  <span class="kicker">Trust</span>
-  <h2 class="sec">How we handle your fund.</h2>
-  <div class="secgrid">
-    <div class="seccard"><h3>We administer, we don't value</h3><p>Your board approves the pricing policy and your GP owns valuation. We apply the approved marks, reconcile them and document every step.</p></div>
-    <div class="seccard"><h3>New, and upfront about it <span class="pill">SOC 1: roadmap</span></h3><p>We're a new administrator. That's why we start in shadow mode: you check our work for several cycles before relying on it. A SOC 1 Type II report is on our roadmap.</p></div>
-    <div class="seccard"><h3>Your files</h3><p>Used only to produce your NAV, covered by an NDA and a data processing agreement signed before you send anything, and deleted on request.</p></div>
-    <div class="seccard"><h3>Every number traces back</h3><p>Each figure links to a source file by its SHA-256 hash, so your auditor can re-run any NAV we've issued on their own.</p></div>
+<section id="approach">
+  <div class="wrap">
+    <div class="head rv">
+      <div><div class="sc">Approach</div><h2>How an engagement begins</h2></div>
+      <p>No migration project and no change to how your fund runs. You send the files you already produce, and we show you what we would have issued.</p>
+    </div>
+    <div class="steps">
+      <div class="step rv"><div class="rn">i.</div><h3>Send one period</h3><p>Your trade blotter, custodian statement, capital activity and board-approved pricing file, in whatever format they come out of your systems.</p></div>
+      <div class="step rv"><div class="rn">ii.</div><h3>Compare</h3><p>We return a NAV pack and a statement for every investor. You set them beside your own numbers, and where they differ, the exception report says why.</p></div>
+      <div class="step rv"><div class="rn">iii.</div><h3>Move when it matches</h3><p>After a few periods in agreement, Attest can become your administrator of record. If we haven't earned that, you've lost nothing.</p></div>
+    </div>
   </div>
-</div></section>
+</section>
 
-<footer><div class="wrap">
-  <div>© 2026 Attest</div>
-  <div><a href="mailto:hello@attest.fund?subject=Shadow%20NAV">hello@attest.fund</a></div>
-</div></footer>
-</body></html>
+<section id="deliverables" class="deliv">
+  <div class="wrap dl">
+    <div class="stick rv">
+      <div class="sc">Deliverables</div>
+      <h2>What you receive each period</h2>
+      <p>The documents your investors, your auditor and your own operations team ask for, prepared the same way every time.</p>
+    </div>
+    <ol class="items">
+      <li class="rv"><div class="rn">i.</div><div><h3>NAV pack</h3><p>Reconciliation to the custodian with every break named, positions and marks with their source, the NAV waterfall, the allocation across investors and a fingerprint of every input file.</p></div></li>
+      <li class="rv"><div class="rn">ii.</div><div><h3>Capital statements</h3><p>One per investor of record. Opening capital, share of P&amp;L, incentive fee against that investor's own high-water mark, closing capital, and for a partial redemption the amount paid, the holdback and what stays in the fund.</p></div></li>
+      <li class="rv"><div class="rn">iii.</div><div><h3>Year-to-date statement</h3><p>Every contribution, each period's P&amp;L and fees, withdrawals, closing capital and the time-weighted net return, issued to investors who redeemed during the year as well.</p></div></li>
+      <li class="rv"><div class="rn">iv.</div><div><h3>Exception report</h3><p>Every row we couldn't book as supplied, with its line number and what we did about it. A duplicate, a trade the custodian never confirmed, a settlement with no trade behind it.</p></div></li>
+      <li class="rv"><div class="rn">v.</div><div><h3>Run record</h3><p>Every figure at every valuation date, stored with the files that produced it, so any NAV we've issued can be re-performed exactly, for you or for your auditor.</p></div></li>
+      <li class="rv"><div class="rn">vi.</div><div><h3>Restatement memorandum</h3><p>If a number changes, a short memo leads with the determination and then shows the arithmetic, including any redemption already paid at the old NAV, priced again to the cent.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<section id="instruments">
+  <div class="wrap">
+    <div class="head rv">
+      <div><div class="sc">Instruments</div><h2>Built for the books older administrators struggle with</h2></div>
+      <p>Anything with a board-approved price can be carried. These are the instruments we've built specific handling for, because they're where newer funds most often get stuck.</p>
+    </div>
+    <table class="ledger rv">
+      <thead><tr><th>Instrument</th><th>For example</th><th>How it's marked</th></tr></thead>
+      <tbody>
+        <tr><td>Event contracts</td><td>Kalshi CPI year-over-year contract</td><td>Last trade on the venue. If that trade is older than the policy allows, the bid and ask midpoint, as the board's pricing policy directs.<br><span class="flag">Flagged in the pack</span></td></tr>
+        <tr><td>Tokenized Treasury funds</td><td>Ondo OUSG, Ondo USDY</td><td>The sponsor's published NAV per unit, with the source shown against the position.</td></tr>
+        <tr><td>Stablecoin balances</td><td>Circle EURC</td><td>Venue price, translated to your base currency at the ECB reference rate. A stale rate is applied per policy and marked for review.<br><span class="flag">Flagged in the pack</span></td></tr>
+        <tr><td>Custody activity</td><td>Fees, interest, cash sweeps</td><td>Booked from the custodian statement and shown on its own when there's no trade behind it.</td></tr>
+      </tbody>
+    </table>
+    <p class="note rv">Examples are the instruments we've already carried through full periods on sample books. They aren't a list of clients or holdings.</p>
+  </div>
+</section>
+
+<section id="controls" class="controls">
+  <div class="wrap">
+    <div class="head rv">
+      <div><div class="sc">Controls</div><h2>How we handle your fund</h2></div>
+      <p>A few commitments that shape how the work is done, and that hold whether or not anyone is checking.</p>
+    </div>
+    <div class="cgrid">
+      <div class="rv"><h3>We administer. We don't value.</h3><p>Your board sets the pricing policy and your general partner owns valuation. We apply the approved marks, reconcile them and record every step.</p></div>
+      <div class="rv"><h3>Changes come with an explanation</h3><p>When a restated figure appears, the memorandum says what moved, which file caused it and which later periods it flowed into.</p></div>
+      <div class="rv"><h3>Your data, or our error</h3><p>If a change comes from your files, we say so. If our own software fails to reproduce a number, we say that instead, and it's never passed to you as something to research.</p></div>
+      <div class="rv"><h3>Your files stay yours</h3><p>Used only to administer your fund, under an NDA and a data processing agreement signed before anything is sent, and deleted on request.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="standing">
+  <div class="wrap standing">
+    <div class="rv"><div class="sc">Where we are</div><h2>A new administrator, and upfront about it</h2></div>
+    <div class="body rv">
+      <p>Attest is new. We don't have a SOC 1 report yet, and we'd rather tell you here than have you find it in diligence.</p>
+      <p>That's the reason every engagement starts in shadow mode. You see our work next to numbers you already trust, for as many periods as you like, before relying on any of it. A SOC 1 Type II examination is on our roadmap.</p>
+      <dl class="facts">
+        <div><dt>Built for</dt><dd>Hedge, quant or digital asset, under $500M</dd></div>
+        <div><dt>Shadow period</dt><dd>First period free</dd></div>
+        <div><dt>SOC 1 Type II</dt><dd>On the roadmap</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<section class="close">
+  <div class="wrap rv">
+    <div class="sc">Get started</div>
+    <h2>Begin with one period, in parallel.</h2>
+    <p>Send the files for a single valuation date. We'll return a NAV pack and investor statements, and you can judge them against your own.</p>
+    <a class="btn btn-solid" href="mailto:hello@attest.fund?subject=Shadow%20run">Arrange a shadow run <span class="arr">&rarr;</span></a>
+    <span class="mail">or write to <a href="mailto:hello@attest.fund">hello@attest.fund</a></span>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="frow">
+      <a class="mark" href="#top" aria-label="Attest home">
+        <svg width="26" height="26" viewBox="0 0 30 30" aria-hidden="true"><circle cx="15" cy="15" r="14" fill="none" stroke="#1D3A31" stroke-width="1.2"/><circle cx="15" cy="15" r="11" fill="none" stroke="#9A7B45" stroke-width=".8"/><path d="M9.6 20.4 15 8.6l5.4 11.8M11.7 16.2h6.6" fill="none" stroke="#1D3A31" stroke-width="1.3" stroke-linejoin="round"/></svg>
+        <span>Attest</span>
+      </a>
+      <div>Fund administration &middot; San Francisco Bay Area</div>
+      <a href="mailto:hello@attest.fund">hello@attest.fund</a>
+    </div>
+    <div class="legal"><p>&copy; 2026 Attest. Attest provides fund administration services. It doesn't provide investment advice, and valuation policy remains the responsibility of each fund's board and general partner. Sample documents on this page are generated from a fictional fund.</p></div>
+  </div>
+</footer>
+
+<script>
+  const hdr=document.querySelector('header');
+  const onScroll=()=>hdr.classList.toggle('scrolled',scrollY>8);
+  addEventListener('scroll',onScroll,{passive:true});onScroll();
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
