@@ -1,221 +1,25 @@
 <!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Attest | Fund administration</title>
-<meta name="description" content="Fund administration for emerging funds. Send the files you already have. Get your NAV and investor statements back, with every figure traceable to its source.">
-<meta property="og:title" content="Attest | Fund administration">
-<meta property="og:description" content="Send the files you already have. Get your NAV and investor statements back.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://attest.fund/">
-<meta property="og:image" content="https://attest.fund/og.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="canonical" href="https://attest.fund/">
-<meta name="theme-color" content="#FFFFFF">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Ccircle cx='15' cy='15' r='14' fill='%23fff' stroke='%231B2B48' stroke-width='1.6'/%3E%3Cpath d='M9.6 20.4 15 8.6l5.4 11.8M11.7 16.2h6.6' fill='none' stroke='%231B2B48' stroke-width='1.8' stroke-linejoin='round'/%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#FFFFFF; --soft:#F5F6F8; --ink:#111418; --ink-2:#434850; --muted:#6A7078; --rule:#E2E4E8; --navy:#1B2B48; --navy-2:#24385E;
-    --font:"Source Serif 4",Georgia,"Times New Roman",serif;
-  }
-  *{box-sizing:border-box}
-  html{-webkit-text-size-adjust:100%}
-  body{margin:0;background:var(--bg);color:var(--ink-2);font:19px/1.6 var(--font);-webkit-font-smoothing:antialiased;font-variant-numeric:lining-nums}
-  a{color:var(--navy);text-underline-offset:3px}
-  a:focus-visible,summary:focus-visible{outline:2px solid var(--navy);outline-offset:3px}
-  h1,h2,h3{color:var(--ink);font-weight:400;margin:0}
-  p{margin:0}
-  .wrap{max-width:1080px;margin:0 auto;padding:0 40px}
-
-  header .wrap{display:flex;align-items:center;justify-content:space-between;height:80px}
-  .mark{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--ink);font-size:31px;font-weight:600;letter-spacing:-.01em}
-  .btn{display:inline-block;font:600 17px/1 var(--font);text-decoration:none;padding:15px 24px;background:var(--navy);color:#fff}
-  .btn:hover{background:var(--navy-2)}
-  header nav{display:flex;align-items:center;gap:30px;font-size:17px}
-  header nav a:not(.btn){color:var(--ink-2);text-decoration:none}
-  header nav a:not(.btn):hover{color:var(--ink)}
-  header .btn{padding:12px 18px}
-  header{border-bottom:1px solid var(--rule)}
-
-  section{padding:0 0 96px}
-  main section + section > .wrap{border-top:1px solid var(--rule);padding-top:96px}
-
-  .hero .wrap{display:grid;grid-template-columns:1.12fr .88fr;gap:48px;align-items:center}
-  .hero{padding:72px 0 96px}
-  .hero h1{font-size:clamp(44px,4.6vw,60px);line-height:1.05;letter-spacing:-.015em;text-wrap:balance}
-  .hero p{font-size:22px;line-height:1.5;margin:22px 0 0;max-width:23em}
-  .hero p.for{font-size:18px;color:var(--muted);margin:14px 0 34px;max-width:28em}
-  .hero .art{width:100%;max-width:470px;justify-self:end}
-
-  h2{font-size:clamp(32px,3.4vw,42px);line-height:1.12;text-align:center;margin-bottom:56px}
-
-  .flow{display:grid;grid-template-columns:1fr 64px 1fr 64px 1fr;align-items:start}
-  .step{text-align:center}
-  .step svg{display:block;margin:0 auto 22px;height:120px;width:auto}
-  .step h3{font-size:23px;font-weight:600;margin-bottom:10px}
-  .step p{font-size:17px;color:var(--muted);line-height:1.55;max-width:17em;margin:0 auto}
-  .arrow{padding-top:48px;display:flex;justify-content:center}
-  .arrow svg{width:48px;height:24px}
-
-  .controls{display:grid;grid-template-columns:1fr 1fr;gap:0 72px;max-width:900px;margin:0 auto}
-  .controls > div{padding:26px 0;border-top:1px solid var(--rule)}
-  .controls h3{font-size:22px;font-weight:600;margin-bottom:8px}
-  .controls p{font-size:18px;color:var(--ink-2)}
-
-  .faq{max-width:760px;margin:0 auto;border-top:1px solid var(--ink)}
-  details{border-bottom:1px solid var(--rule)}
-  summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:24px;padding:20px 0;font-size:20px;color:var(--ink)}
-  summary::-webkit-details-marker{display:none}
-  summary:after{content:"+";color:var(--muted)}
-  details[open] summary:after{content:"\2212"}
-  details p{padding:0 0 22px;font-size:18px}
-
-  .close{text-align:center}
-  .close h2{margin-bottom:32px}
-
-  footer{border-top:1px solid var(--rule);padding:30px 0;font-size:15px;color:var(--muted)}
-  footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
-  footer a{color:var(--ink-2);text-decoration:none}
-
-  @media (max-width:880px){
-    header nav a:not(.btn){display:none}
-    .hero .wrap{grid-template-columns:1fr}
-    .hero .art{justify-self:center;max-width:380px}
-    .flow{grid-template-columns:1fr;gap:8px}
-    .arrow{padding:4px 0 12px}
-    .arrow svg{transform:rotate(90deg)}
-    .controls{grid-template-columns:1fr}
-    section{padding:0 0 72px}
-    main section + section > .wrap{padding-top:72px}
-  }
-  @media (max-width:560px){
-    .wrap{padding:0 22px}
-    .hero h1{font-size:40px}
-    .hero p{font-size:20px}
-    header .btn{padding:11px 14px;font-size:15px}
-  }
-</style>
-</head>
-<body>
-
-<header>
-  <div class="wrap">
-    <a class="mark" href="#top" aria-label="Attest home">
-      <svg width="42" height="42" viewBox="0 0 30 30" aria-hidden="true"><circle cx="15" cy="15" r="14" fill="none" stroke="#1B2B48" stroke-width="1.2"/><circle cx="15" cy="15" r="11" fill="none" stroke="#1B2B48" stroke-width=".6"/><path d="M9.6 20.4 15 8.6l5.4 11.8M11.7 16.2h6.6" fill="none" stroke="#1B2B48" stroke-width="1.3" stroke-linejoin="round"/></svg>
-      Attest
-    </a>
-    <nav>
-      <a href="#how">How it works</a>
-      <a href="#controls">Your data</a>
-      <a href="#faq">Questions</a>
-      <a class="btn" href="mailto:hello@attest.fund">Get in touch</a>
-    </nav>
-  </div>
-</header>
-
-<main id="top">
-<section class="hero">
-  <div class="wrap">
-    <div>
-      <h1>Fund administration that shows its work.</h1>
-      <p>Send the files you already have. Get your NAV and investor statements back, with every figure traced to its source.</p>
-      <p class="for">Built for emerging hedge, quant and digital asset funds, including funds holding event contracts, tokenized Treasury funds and stablecoins.</p>
-      <a class="btn" href="mailto:hello@attest.fund">Get in touch</a>
-    </div>
-    <svg class="art" viewBox="0 0 470 400" role="img" aria-label="A stack of fund documents stamped with the Attest seal">
-      <g fill="#fff" stroke="#1B2B48" stroke-width="1.5">
-        <rect x="40" y="46" width="250" height="320" transform="rotate(-6 165 206)"/>
-        <rect x="120" y="30" width="250" height="320" transform="rotate(4 245 190)"/>
-        <rect x="90" y="52" width="250" height="320"/>
-      </g>
-      <g stroke="#1B2B48" stroke-width="2"><line x1="114" y1="86" x2="250" y2="86"/></g>
-      <g stroke="#C9CDD3" stroke-width="2">
-        <line x1="114" y1="112" x2="316" y2="112"/><line x1="114" y1="134" x2="316" y2="134"/><line x1="114" y1="156" x2="290" y2="156"/>
-        <line x1="114" y1="190" x2="316" y2="190"/><line x1="114" y1="212" x2="316" y2="212"/><line x1="114" y1="234" x2="316" y2="234"/><line x1="114" y1="256" x2="270" y2="256"/>
-      </g>
-      <g stroke="#1B2B48" stroke-width="1.5"><line x1="230" y1="286" x2="316" y2="286"/><line x1="230" y1="291" x2="316" y2="291"/></g>
-      <defs><path id="sealring" d="M0 0 m-54 0 a54 54 0 1 1 108 0 a54 54 0 1 1 -108 0"/></defs>
-      <g transform="translate(338 292) rotate(-12)">
-        <circle r="76" fill="#fff" stroke="#1B2B48" stroke-width="2.2"/>
-        <circle r="68" fill="none" stroke="#1B2B48" stroke-width="1"/>
-        <circle r="42" fill="none" stroke="#1B2B48" stroke-width="1"/>
-        <text font-family="Source Serif 4, Georgia, serif" font-size="11" font-weight="600" fill="#1B2B48"><textPath href="#sealring" textLength="330" lengthAdjust="spacing">ATTEST · FUND ADMINISTRATION · EVERY FIGURE TRACED ·</textPath></text>
-        <path d="M-16 19 0 -21l16 40M-10 6h20" fill="none" stroke="#1B2B48" stroke-width="3" stroke-linejoin="round"/>
-      </g>
-    </svg>
-  </div>
-</section>
-
-<section id="how">
-  <div class="wrap">
-    <h2>How it works</h2>
-    <div class="flow">
-      <div class="step">
-        <svg viewBox="0 0 150 120" aria-hidden="true"><g fill="#fff" stroke="#1B2B48" stroke-width="1.5"><rect x="20" y="22" width="62" height="80"/><rect x="44" y="14" width="62" height="80"/><rect x="68" y="6" width="62" height="80"/></g><g stroke="#C9CDD3" stroke-width="2"><line x1="78" y1="24" x2="120" y2="24"/><line x1="78" y1="36" x2="120" y2="36"/><line x1="78" y1="48" x2="110" y2="48"/></g></svg>
-        <h3>You send your files</h3>
-        <p>Your trade blotter, custodian statement, capital activity and board-approved prices, in whatever format your systems already export.</p>
-      </div>
-      <div class="arrow"><svg viewBox="0 0 48 24" aria-hidden="true"><path d="M0 12h44M36 4l8 8-8 8" fill="none" stroke="#1B2B48" stroke-width="1.5"/></svg></div>
-      <div class="step">
-        <svg viewBox="0 0 150 120" aria-hidden="true"><circle cx="75" cy="60" r="52" fill="#fff" stroke="#1B2B48" stroke-width="2"/><circle cx="75" cy="60" r="44" fill="none" stroke="#1B2B48" stroke-width="1"/><path d="M63 76 75 44l12 32M67.5 66h15" fill="none" stroke="#1B2B48" stroke-width="2.4" stroke-linejoin="round"/></svg>
-        <h3>We reconcile and value</h3>
-        <p>Every trade is matched to your custodian, positions are priced by your board's policy, and fees are worked out for each investor.</p>
-      </div>
-      <div class="arrow"><svg viewBox="0 0 48 24" aria-hidden="true"><path d="M0 12h44M36 4l8 8-8 8" fill="none" stroke="#1B2B48" stroke-width="1.5"/></svg></div>
-      <div class="step">
-        <svg viewBox="0 0 150 120" aria-hidden="true"><g fill="#fff" stroke="#1B2B48" stroke-width="1.5"><rect x="44" y="10" width="68" height="92"/></g><g stroke="#1B2B48" stroke-width="2"><line x1="54" y1="26" x2="92" y2="26"/></g><g stroke="#C9CDD3" stroke-width="2"><line x1="54" y1="42" x2="102" y2="42"/><line x1="54" y1="54" x2="102" y2="54"/><line x1="54" y1="66" x2="102" y2="66"/></g><g stroke="#1B2B48" stroke-width="1.5"><line x1="78" y1="82" x2="102" y2="82"/><line x1="78" y1="86" x2="102" y2="86"/></g></svg>
-        <h3>You get the documents</h3>
-        <p>A NAV pack for the fund and a capital statement for every investor, with each figure traced back to your files.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="controls">
-  <div class="wrap">
-    <h2>How we handle your fund</h2>
-    <div class="controls">
-      <div><h3>We never set your marks</h3><p>Your board sets the pricing policy and your general partner owns valuation. We apply the approved marks and record every step.</p></div>
-      <div><h3>Every file fingerprinted</h3><p>Each input file gets a SHA-256 fingerprint when it arrives, so any NAV we issue can be re-run and checked against the exact files behind it.</p></div>
-      <div><h3>Changes come with a reason</h3><p>If a number moves, we show what changed, which file caused it, and any cash already paid at the old figure.</p></div>
-      <div><h3>Your files stay yours</h3><p>An NDA and a data processing agreement come before anything is sent. Files are used only for your fund and deleted on request.</p></div>
-    </div>
-  </div>
-</section>
-
-<section id="faq">
-  <div class="wrap">
-    <h2>Questions</h2>
-    <div class="faq">
-      <details><summary>Who is Attest for?</summary><p>Emerging hedge, quant and digital asset funds, including funds holding Kalshi contracts, tokenized Treasury funds and stablecoins. <a href="https://www.hfr.com/media/market-commentary/hedge-fund-launches-liquidations-rise-to-begin-volatile-2026/">561 hedge funds launched in 2025</a>, the most since 2021.</p></details>
-      <details><summary>Do you value our positions?</summary><p>No. Your board sets the pricing policy. We apply the approved marks and record every step.</p></details>
-      <details><summary>Are you SOC 1 audited?</summary><p>Not yet. It is on our roadmap.</p></details>
-      <details><summary>Can we try it first?</summary><p>Yes. We can run one period alongside your current process, free, so you can compare our numbers with yours.</p></details>
-      <details><summary>How is our data handled?</summary><p>An NDA and a data processing agreement come first. Each file is fingerprinted when it arrives and deleted on request.</p></details>
-      <details><summary>Can we see a sample?</summary><p>Yes. Write to <a href="mailto:hello@attest.fund?subject=Sample">hello@attest.fund</a> and we'll send one.</p></details>
-    </div>
-  </div>
-</section>
-
-<section class="close">
-  <div class="wrap">
-    <h2>Talk to us about your fund.</h2>
-    <a class="btn" href="mailto:hello@attest.fund">Get in touch</a>
-  </div>
-</section>
-</main>
-
-<footer>
-  <div class="wrap">
-    <span>&copy; 2026 Attest. Fund administration, San Francisco Bay Area.</span>
-    <a href="mailto:hello@attest.fund">hello@attest.fund</a>
-  </div>
-</footer>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Attest | Fund administration</title>
+    <meta name="description" content="Fund administration for emerging funds. Send the files you already have. Get your NAV and investor statements back, with every figure traced to its source." />
+    <meta property="og:title" content="Attest | Fund administration" />
+    <meta property="og:description" content="Send the files you already have. Get your NAV and investor statements back." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://attest.fund/" />
+    <meta property="og:image" content="https://attest.fund/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://attest.fund/" />
+    <meta name="theme-color" content="#FFFFFF" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Ccircle cx='15' cy='15' r='14' fill='%23fff' stroke='%231B2B48' stroke-width='1.6'/%3E%3Cpath d='M9.6 20.4 15 8.6l5.4 11.8M11.7 16.2h6.6' fill='none' stroke='%231B2B48' stroke-width='1.8' stroke-linejoin='round'/%3E%3C/svg%3E" />
+    <script type="module" crossorigin src="./assets/index-BwDUe4Ki.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-0CO4DOmR.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
 </html>
